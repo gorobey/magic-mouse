@@ -1,6 +1,7 @@
 # Magic Mouse
-Bash script for connect apple magic mouse automatically in ubuntu
+Bash script for connect apple magic mouse automatically in Ubuntu
 
+# *Perform the installation steps as root user*
 
 ## Download installation script
 curl -O https://raw.githubusercontent.com/gorobey/magic-mouse/main/install.sh
