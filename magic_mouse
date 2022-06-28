@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#MAC ADDRESS of magic mouse
+MAGIC_MOUSE_UUID="00:00:00:00:00:00" 
+
+while true
+do
+#       sleep 3s
+        IS_CONNECTED=$(bluetoothctl devices | while read uuid; do bluetoothctl info $MAGIC_MOUSE_UUID; done | grep -e "Name\|Connected: yes" | grep -B1 "yes" | head -n 1 | cut -d\  -f2-)
+        if [ $IS_CONNECTED != "yes" ]
+        then
+                bluetoothctl connect $MAGIC_MOUSE_UUID
+                sleep 1s
+                sudo modprobe -r hid-magicmouse
+                sudo modprobe hid-magicmouse emulate_scroll_wheel=Y emulate_3button=Y middle_click_3finger=Y scroll_acceleration=Y scroll_speed=12
+        fi
+done
